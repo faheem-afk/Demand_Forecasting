@@ -1,3 +1,5 @@
 demand_forecasting_venv
-
-.ipynb_checkpoints/
+*.pkl
+data 
+artifacts
+*.csv
