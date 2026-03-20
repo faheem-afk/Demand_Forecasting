@@ -1,8 +1,8 @@
 demand_forecasting_venv/
-*.pkl
+artifacts/
 data/
 artifacts/
-*.csv
 .ipynb_checkpoints/
 .gitignore
-postgres_data
+postgres_data/
+data/
