@@ -5,7 +5,6 @@ An end-to-end multi-horizon demand forecasting system designed to predict meal d
 ⚠️ This repository represents the development environment (Docker-based).
 The deployed version uses Neon (serverless Postgres) and Streamlit Cloud.
 
-⸻
 
 📌 Overview
 
@@ -16,13 +15,10 @@ This project goes beyond a single model and focuses on building a production-sty
 	•	Containerized services
 	•	Efficient data storage
 
-⸻
-
 🧠 Problem Statement
 
 Forecast meal demand across multiple cities for the next 12 weeks, enabling better planning and decision-making.
 
-⸻
 
 ⚙️ System Architecture (Development)
 
@@ -35,7 +31,6 @@ Docker Compose
 
 Each component runs in its own container, enabling modular development and easy orchestration.
 
-⸻
 
 📊 Model Design
 	•	Trained 12 independent XGBoost models, each predicting a specific forecast horizon:
@@ -47,7 +42,6 @@ Each component runs in its own container, enabling modular development and easy 
 	•	~320,000 rows
 	•	32 features
 
-⸻
 
 🔧 Feature Engineering
 
@@ -67,14 +61,11 @@ Key insights:
 
 These were the most influential predictors across models.
 
-⸻
 
 ⚡ Performance Optimization
 	•	Replaced row-wise inserts with PostgreSQL COPY
 	•	Achieved significantly faster bulk data ingestion
 	•	Improved pipeline efficiency for large datasets
-
-⸻
 
 🐳 Dockerized Development
 
@@ -91,8 +82,6 @@ Streamlit App	Visualization dashboard
 PostgreSQL	Local data storage
 
 
-⸻
-
 🚀 Deployment Architecture (Production)
 
 Streamlit Cloud (Frontend)
@@ -104,7 +93,6 @@ Key differences from development:
 	•	Docker containers → Cloud-hosted services
 	•	Direct DB connection via Streamlit
 
-⸻
 
 🖥️ Running Locally
 
@@ -114,14 +102,10 @@ git clone <your-repo-url>
 cd demand_forecasting
 
 
-⸻
-
 2. For each service
 
 docker compose up --build
 
-
-⸻
 
 📦 Project Structure
 
@@ -135,14 +119,10 @@ docker compose up --build
 └── README.md
 
 
-⸻
-
 🔐 Notes
 	•	Local development uses Docker-based PostgreSQL
 	•	Production uses Neon for scalability
 	•	Secrets (DB credentials) are not included in the repo
-
-⸻
 
 💡 Key Learnings
 	•	Building the model is only a small part of the system
@@ -150,13 +130,11 @@ docker compose up --build
 	•	Containerization simplifies reproducibility and system design
 	•	Efficient database operations (e.g., COPY) significantly impact performance
 
-⸻
 
 🌐 Live Demo
 
 👉 https://demandforecastt.streamlit.app
 
-⸻
 
 📬 Contact
 
@@ -164,7 +142,6 @@ If you’d like to discuss this project or collaborate:
 	•	LinkedIn: https://www.linkedin.com/in/faheemb
 	•	Email: adahm7114@gmail.com
 
-⸻
 
 ⭐ If you like this project, consider giving it a star!
 
