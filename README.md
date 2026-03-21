@@ -1,26 +1,44 @@
-🚀 Demand Forecasting System (Development Version)
+<h1 align="center">🚀 Demand Forecasting System</h1>
 
-An end-to-end multi-horizon demand forecasting system designed to predict meal demand across cities using time-series machine learning, modular pipelines, and containerized architecture.
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?size=22&duration=3000&color=36BCF7&center=true&vCenter=true&width=600&lines=12+Models.+12+Weeks+Ahead.;End-to-End+ML+Pipeline;Built+for+Real-World+Demand+Forecasting" />
+</p>
 
-⚠️ This repository represents the development environment (Docker-based).
-The deployed version uses Neon (serverless Postgres) and Streamlit Cloud.
+<p align="center">
+  <a href="https://demandforecastt.streamlit.app">
+    <img src="https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=streamlit" />
+  </a>
+  <img src="https://img.shields.io/badge/Status-Development-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Data-320K%20Rows-orange?style=for-the-badge" />
+</p>
 
+---
 
-📌 Overview
+## 📌 Overview
 
-This project goes beyond a single model and focuses on building a production-style ML system, including:
-	•	Data preprocessing & feature engineering
-	•	Multi-horizon forecasting
-	•	Model interpretability
-	•	Containerized services
-	•	Efficient data storage
+This is not just a model.
 
-🧠 Problem Statement
+It’s a **production-style demand forecasting system** designed to predict meal demand across cities — built with modular pipelines, containerized services, and scalable data workflows.
 
-Forecast meal demand across multiple cities for the next 12 weeks, enabling better planning and decision-making.
+⚠️ This repo represents the **development environment (Docker-based)**  
+🚀 Production runs on **Neon (serverless Postgres) + Streamlit Cloud**
 
+---
 
-⚙️ System Architecture (Development)
+## 🧠 Problem
+
+Forecast demand for the next **12 weeks** across multiple cities.
+
+Not one prediction.  
+A full **multi-horizon forecasting system**.
+
+---
+
+## ⚙️ System Architecture
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Docker%20Compose-Orchestrated-blue?style=flat-square" />
+</p>
 
 Docker Compose
 │
@@ -29,120 +47,135 @@ Docker Compose
 ├── Streamlit Dashboard
 └── PostgreSQL (local DB)
 
-Each component runs in its own container, enabling modular development and easy orchestration.
+Each service runs independently → clean, modular, scalable.
 
+---
 
-📊 Model Design
-	•	Trained 12 independent XGBoost models, each predicting a specific forecast horizon:
-	•	Model 1 → Week +1
-	•	Model 2 → Week +2
-	•	…
-	•	Model 12 → Week +12
-	•	Dataset:
-	•	~320,000 rows
-	•	32 features
+## 📊 Model Design
 
+- Trained **12 independent XGBoost models**
+- Each model predicts a specific horizon:
 
-🔧 Feature Engineering
+Week +1 → Model 1
+Week +2 → Model 2
+…
+Week +12 → Model 12
 
-Implemented time-series specific features:
-	•	Lag features (historical demand)
-	•	Rolling statistics (moving averages)
-	•	Categorical encoding
-	•	Missing value handling
+📦 Dataset:
+- ~320,000 rows  
+- 32 features  
 
-🔍 Model Interpretability
+---
 
-Used SHAP (SHapley Additive Explanations) to analyze feature importance.
+## 🔧 Feature Engineering
 
-Key insights:
-	•	Historical demand (num_orders)
-	•	16-week rolling average demand
+Time-series specific transformations:
 
-These were the most influential predictors across models.
+- Lag features (historical demand)
+- Rolling statistics (moving averages)
+- Categorical encoding
+- Missing value handling
 
+---
 
-⚡ Performance Optimization
-	•	Replaced row-wise inserts with PostgreSQL COPY
-	•	Achieved significantly faster bulk data ingestion
-	•	Improved pipeline efficiency for large datasets
+## 🔍 Interpretability (SHAP)
 
-🐳 Dockerized Development
+Used SHAP to understand model behavior.
 
-The system is fully containerized using:
-	•	Docker
-	•	Docker Compose
+📈 Key drivers:
+- `num_orders` (historical demand)
+- `num_orders_rolling_16_week`
 
-Services:
+👉 The model heavily relies on **recent + smoothed historical trends**
 
-Service	Description
-ML Pipeline	Training & prediction logic
-API	Interface for model outputs
-Streamlit App	Visualization dashboard
-PostgreSQL	Local data storage
+---
 
+## ⚡ Performance Optimization
 
-🚀 Deployment Architecture (Production)
+- Replaced row-wise inserts with **PostgreSQL COPY**
+- Achieved significantly faster ingestion
+- Improved pipeline efficiency for large datasets
+
+---
+
+## 🐳 Dockerized Development
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=docker,python,postgres" />
+</p>
+
+| Service        | Description                  |
+|----------------|------------------------------|
+| ML Pipeline    | Training + inference         |
+| API            | Model interface              |
+| Streamlit App  | Visualization dashboard      |
+| PostgreSQL     | Local data storage           |
+
+---
+
+## 🚀 Production Setup
 
 Streamlit Cloud (Frontend)
-        ↓
+↓
 Neon Postgres (Database)
 
-Key differences from development:
-	•	Local PostgreSQL → Neon (serverless Postgres)
-	•	Docker containers → Cloud-hosted services
-	•	Direct DB connection via Streamlit
+Key differences:
+- Local DB → Serverless Postgres  
+- Docker → Cloud deployment  
+- Direct DB access via Streamlit  
 
+---
 
-🖥️ Running Locally
+## 🖥️ Run Locally
 
-1. Clone the repo
-
+```bash
 git clone <your-repo-url>
 cd demand_forecasting
-
-
-2. For each service
-
 docker compose up --build
 
+
+⸻
 
 📦 Project Structure
 
 .
-├── app/                  # Streamlit app + DB utilities
-├── model/                # ML pipeline (training, inference, feature engineering)
-├── api/                  # API layer (if applicable)
+├── app/          # Streamlit app
+├── model/        # ML pipeline
+├── api/          # API layer
 ├── docker-compose.yaml
 ├── Dockerfile
 ├── requirements.txt
 └── README.md
 
 
-🔐 Notes
-	•	Local development uses Docker-based PostgreSQL
-	•	Production uses Neon for scalability
-	•	Secrets (DB credentials) are not included in the repo
+⸻
 
 💡 Key Learnings
-	•	Building the model is only a small part of the system
-	•	Data pipelines, storage, and deployment are equally critical
-	•	Containerization simplifies reproducibility and system design
-	•	Efficient database operations (e.g., COPY) significantly impact performance
+	•	Models are only one part of the system
+	•	Data pipelines & storage matter just as much
+	•	Containerization improves reproducibility
+	•	Efficient DB operations (COPY) = major performance gains
 
+⸻
 
 🌐 Live Demo
 
 👉 https://demandforecastt.streamlit.app
 
+⸻
 
-📬 Contact
-
-If you’d like to discuss this project or collaborate:
+📫 Connect
 	•	LinkedIn: https://www.linkedin.com/in/faheemb
 	•	Email: adahm7114@gmail.com
 
+⸻
 
-⭐ If you like this project, consider giving it a star!
+
+<p align="center">
+  ⭐ If you found this useful, consider starring the repo!
+</p>
+```
+
+
 
 ⸻
