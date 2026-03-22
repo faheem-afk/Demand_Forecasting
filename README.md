@@ -170,6 +170,9 @@ docker compose up --build
 
 ⸻
 
+<p align="center">
+  ⭐ If you found this useful, consider starring the repo!
+</p>
 
 
 ⸻
