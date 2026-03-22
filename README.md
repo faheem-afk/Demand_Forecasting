@@ -169,7 +169,7 @@ docker compose up --build
 	•	Email: adahm7114@gmail.com
 
 ⸻
-
+```
 <p align="center">
   ⭐ If you found this useful, consider starring the repo!
 </p>
